@@ -15,7 +15,7 @@ namespace A_CSharpCourse
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World");
+            Console.WriteLine("Основы C#");
         }
         
         static void Variables() // типы переменных.
