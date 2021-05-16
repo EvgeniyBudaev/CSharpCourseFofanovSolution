@@ -10,6 +10,9 @@ using Microsoft.Extensions.Logging;
 
 namespace E_Exceptions
 {
+    // custom exception type
+    public class CreditCardWithdrawException : Exception
+    {}
     public class Program
     {
         public static void Main(string[] args)
