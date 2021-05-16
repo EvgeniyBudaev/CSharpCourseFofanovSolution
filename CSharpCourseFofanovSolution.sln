@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E_Exceptions", "E_Exception
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D_OOP", "D_OOP\D_OOP.csproj", "{F2B8522C-5E44-41AE-84FA-CB03C94A0AD3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F_WorkToFiles", "F_WorkToFiles\F_WorkToFiles.csproj", "{897E88F5-2E80-4904-B75B-812270E4FB99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{F2B8522C-5E44-41AE-84FA-CB03C94A0AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2B8522C-5E44-41AE-84FA-CB03C94A0AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2B8522C-5E44-41AE-84FA-CB03C94A0AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{897E88F5-2E80-4904-B75B-812270E4FB99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{897E88F5-2E80-4904-B75B-812270E4FB99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{897E88F5-2E80-4904-B75B-812270E4FB99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{897E88F5-2E80-4904-B75B-812270E4FB99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
