@@ -1,21 +1,27 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using System.Timers;
 
 namespace G_Delegation
 {
+    public class CarArgs : EventArgs
+    {
+        public CarArgs(int currentSpeed)
+        {
+            CurrentSpeed = currentSpeed;
+        }
+
+        public int CurrentSpeed { get; }
+    }
+    
     public class Car
     {
         private int speed = 0;
 
-        public delegate void TooFast(int currentSpeed);
+        public event EventHandler<CarArgs> TooFastDriving;
 
-        private TooFast tooFast;
+        // public delegate void TooFast(int currentSpeed);
+
+        // private TooFast tooFast;
 
         public void Start()
         {
@@ -26,7 +32,8 @@ namespace G_Delegation
         {
             speed += 10;
             if (speed > 80)
-                tooFast(speed);
+                if (TooFastDriving != null)
+                    TooFastDriving(this, new CarArgs(speed));
         }
 
         public void Stop()
@@ -34,19 +41,32 @@ namespace G_Delegation
             speed = 0;
         }
 
-        public void RegisterOnTooFast(TooFast tooFast)
-        {
-            this.tooFast = tooFast;
-        }
+        // public void RegisterOnTooFast(TooFast tooFast)
+        // {
+        //     this.tooFast += tooFast;
+        // }
+        //
+        // public void UnregisterOnTooFast(TooFast tooFast)
+        // {
+        //     this.tooFast -= tooFast;
+        // }
     }
     public class Program
     {
-        private static Car car;
         public static void Main(string[] args)
         {
             // Делегаты
-            car = new Car();
-            car.RegisterOnTooFast(HandleOnTooFast);
+            Timer timer = new Timer();
+            timer.Elapsed += Timer_Elapsed;
+            
+            timer.Interval = 2000;
+            timer.Start();
+            
+            Car car = new Car();
+            car.TooFastDriving += HandleOnTooFast; // подписались
+            car.TooFastDriving += HandleOnTooFast;
+            
+            car.TooFastDriving -= HandleOnTooFast; // отписались
             
             car.Start();
 
@@ -56,8 +76,15 @@ namespace G_Delegation
             }
         }
 
-        private static void HandleOnTooFast(int speed)
+        private static void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
+            // var timer = (Timer) sender;
+            Console.WriteLine("Handling Timer Elapsed Event");
+        }
+
+        private static void HandleOnTooFast(object obj, CarArgs speed)
+        {
+            var car = (Car) obj;
             Console.WriteLine($"Oh, I got it, calling stop! Current Speed={speed}");
             car.Stop();
         }
